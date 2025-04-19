@@ -6,13 +6,25 @@ const axios = require("axios");
 
 const app = express();
 app.use(cors({
-  origin: [
-    'https://backscan-frontend-ruby.vercel.app',
-    'https://backscan-frontend-bmwxo6wgx-joses-projects-f591d517.vercel.app'
-  ],
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // Permite chamadas sem origin (ex: ferramentas locais)
+
+    const allowedOrigins = [
+      'https://backscan-frontend-ruby.vercel.app',
+      'https://backscan-frontend-bmwxo6wgx-joses-projects-f591d517.vercel.app',
+      'https://backscan-frontend-h7zz.vercel.app'
+    ];
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 
 app.use(bodyParser.json());
