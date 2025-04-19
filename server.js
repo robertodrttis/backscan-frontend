@@ -6,10 +6,11 @@ const axios = require("axios");
 
 const app = express();
 app.use(cors({
-  origin: '*', // Liberar acesso para qualquer origem
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Liberar esses métodos
-  allowedHeaders: ['Content-Type', 'Authorization'] // Liberar esses headers
+  origin: 'https://backscan-frontend-ruby.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(bodyParser.json());
 
 // NOVO: Habilitar respostas a OPTIONS
