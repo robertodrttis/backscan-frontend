@@ -6,10 +6,14 @@ const axios = require("axios");
 
 const app = express();
 app.use(cors({
-  origin: 'https://backscan-frontend-ruby.vercel.app',
+  origin: [
+    'https://backscan-frontend-ruby.vercel.app',
+    'https://backscan-frontend-bmwxo6wgx-joses-projects-f591d517.vercel.app'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 app.use(bodyParser.json());
 
