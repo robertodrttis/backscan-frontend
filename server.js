@@ -6,16 +6,7 @@ const axios = require("axios");
 
 const app = express();
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // Permite chamadas sem origin (ex: local)
-
-    // Permitir qualquer domínio que termine com ".vercel.app"
-    if (origin.endsWith('.vercel.app')) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
