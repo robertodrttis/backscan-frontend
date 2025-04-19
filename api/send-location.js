@@ -1,9 +1,9 @@
-const axios = require('axios');
+import axios from 'axios'
 
 const TELEGRAM_BOT_TOKEN = "8073470836:AAHQGUBwutZfV-_i6r-yAE4kZFyGTU-eokA";
 const TELEGRAM_CHAT_ID = "-4624260421";
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
