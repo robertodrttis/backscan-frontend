@@ -7,15 +7,10 @@ const axios = require("axios");
 const app = express();
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // Permite chamadas sem origin (ex: ferramentas locais)
+    if (!origin) return callback(null, true); // Permite chamadas sem origin (ex: local)
 
-    const allowedOrigins = [
-      'https://backscan-frontend-ruby.vercel.app',
-      'https://backscan-frontend-bmwxo6wgx-joses-projects-f591d517.vercel.app',
-      'https://backscan-frontend-h7zz.vercel.app'
-    ];
-
-    if (allowedOrigins.includes(origin)) {
+    // Permitir qualquer domínio que termine com ".vercel.app"
+    if (origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -24,6 +19,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 
 
